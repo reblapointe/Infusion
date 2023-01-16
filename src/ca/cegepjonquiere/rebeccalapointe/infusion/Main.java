@@ -1,6 +1,9 @@
 package ca.cegepjonquiere.rebeccalapointe.infusion;
 
+import java.util.Locale;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main
 {
@@ -25,6 +28,16 @@ public class Main
     {
         try
         {
+            Pattern patronCodePostal = Pattern.compile("^([A-Z][0-9][A-Z] ?[0-9][A-Z][0-9])$");
+            Scanner in = new Scanner(System.in);
+            System.out.println("Entrez un code postal");
+            String entree = in.nextLine().toUpperCase(Locale.ROOT).strip();
+            Matcher matche = patronCodePostal.matcher(entree);
+            if (matche.find())
+                System.out.println("Merci! Code postal entré : " + matche.group());
+            else
+                System.out.println(entree + " n'est pas un code postal.");
+
             System.out.println("Quel the infusez-vous? Noir, Oolong, Vert ou Blanc\n");
             Scanner scan = new Scanner(System.in);
             String t = scan.next().toUpperCase();
