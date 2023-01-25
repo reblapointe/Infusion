@@ -24,14 +24,18 @@ public class Main
         }
     }
 
+    /**
+     * main est le point d'entrée de mon programme
+     * @param args arguments d'exécution
+     */
     public static void main(String[] args)
     {
         try
         {
-            Pattern patronCodePostal = Pattern.compile("^([A-Z][0-9][A-Z] ?[0-9][A-Z][0-9])$");
+            Pattern patronCodePostal = Pattern.compile("^([A-Z][0-9][A-Z][0-9][A-Z][0-9])$");
             Scanner in = new Scanner(System.in);
             System.out.println("Entrez un code postal");
-            String entree = in.nextLine().toUpperCase(Locale.ROOT).strip();
+            String entree = in.nextLine().strip();
             Matcher matche = patronCodePostal.matcher(entree);
             if (matche.find())
                 System.out.println("Merci! Code postal entré : " + matche.group());
@@ -48,10 +52,11 @@ public class Main
             System.out.println("Debut de l'infusion...\n");
 
             Thread.sleep(choix.tempsInfusion /* 1000*/);
+
         }
         catch (Exception e)
         {
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 }
